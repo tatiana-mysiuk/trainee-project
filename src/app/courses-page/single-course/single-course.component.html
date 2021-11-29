@@ -1,1 +1,25 @@
-<p>single-course works!</p>
+<mat-card>
+  <div class="preheader">
+    <span><mat-icon aria-hidden="false" aria-label="Creation date">access_time</mat-icon>{{ courseData.durationMin }}</span>
+    <span><mat-icon aria-hidden="false" aria-label="Duration">calendar_today</mat-icon>{{ courseData.creationDate | date:'dd/MM/yyyy' }}</span>
+  </div>
+
+  <h2>Video course {{ courseNumber + 1 }} {{ courseData.title }}</h2>
+
+  <div class="course-description">
+    <p>{{ courseData.description }}</p>
+
+    <div class="toolbar">
+      <button mat-flat-button color="primary">
+        <mat-icon aria-hidden="false" aria-label="Edit">edit</mat-icon>
+        <span>Edit</span>
+      </button>
+
+      <button mat-flat-button color="primary" (click)="onDeleteCourse(courseData.id)">
+        <mat-icon aria-hidden="false" aria-label="Delete">delete_outline</mat-icon>
+        <span>Delete</span>
+      </button>
+    </div>
+  </div>
+</mat-card>
+

@@ -1,0 +1,32 @@
+:host {
+  display: block;
+  margin-bottom: 2em;
+
+  mat-icon {
+    padding-right: 0.5em;
+    vertical-align: middle;
+  }
+
+  .preheader {
+    text-align: right;
+    > span:not(:last-child) {
+      margin-right: 2em;
+    }
+    mat-icon {
+      padding-right: 0.2em;
+      font-size: 1.5em;
+    }
+  }
+
+  .course-description {
+    display: flex;
+    .toolbar {
+      padding-left: 2em;
+      white-space: nowrap;
+    }
+  }
+
+  button.mat-flat-button:not(:last-child) {
+    margin-right: 1em;
+  }
+}
