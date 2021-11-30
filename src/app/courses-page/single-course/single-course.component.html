@@ -1,10 +1,10 @@
-<mat-card>
-  <div class="preheader">
-    <span><mat-icon aria-hidden="false" aria-label="Creation date">access_time</mat-icon>{{ courseData.durationMin }}</span>
+<mat-card [appSetBorder]="courseData.creationDate">
+  <div class="preheader" >
+    <span><mat-icon aria-hidden="false" aria-label="Creation date">access_time</mat-icon>{{ courseData.durationMin | duration }}</span>
     <span><mat-icon aria-hidden="false" aria-label="Duration">calendar_today</mat-icon>{{ courseData.creationDate | date:'dd/MM/yyyy' }}</span>
   </div>
 
-  <h2>Video course {{ courseNumber + 1 }} {{ courseData.title }}</h2>
+  <h2 [ngClass]="{'top-rated':courseData.topRated}">Video course {{ courseNumber + 1 }} {{ courseData.title | uppercase }}</h2>
 
   <div class="course-description">
     <p>{{ courseData.description }}</p>
@@ -22,4 +22,3 @@
     </div>
   </div>
 </mat-card>
-

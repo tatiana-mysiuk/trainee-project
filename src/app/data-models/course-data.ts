@@ -4,4 +4,5 @@ export interface CourseData {
   creationDate: Date;
   durationMin: number;
   description: string;
+  topRated: boolean;
 }

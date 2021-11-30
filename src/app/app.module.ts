@@ -16,6 +16,10 @@ import { AddCourseComponent } from './courses-page/add-course/add-course.compone
 import { SingleCourseComponent } from './courses-page/single-course/single-course.component';
 import { LoginComponent } from './login/login.component';
 import { PaginationComponent } from './courses-page/pagination/pagination.component';
+import { SetBorderDirective } from './directives/set-border.directive';
+import { DurationPipe } from './pipes/duration.pipe';
+import { OrderByPipe } from './pipes/order-by.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { PaginationComponent } from './courses-page/pagination/pagination.compon
     AddCourseComponent,
     SingleCourseComponent,
     LoginComponent,
-    PaginationComponent
+    PaginationComponent,
+    SetBorderDirective,
+    DurationPipe,
+    OrderByPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -38,7 +46,9 @@ import { PaginationComponent } from './courses-page/pagination/pagination.compon
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    FilterPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

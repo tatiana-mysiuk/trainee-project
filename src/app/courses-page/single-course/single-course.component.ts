@@ -13,10 +13,11 @@ export class SingleCourseComponent implements OnInit {
     title: '',
     creationDate: new Date(),
     durationMin: 0,
-    description: ''
+    description: '',
+    topRated: false
   };
 
-  @Output() courseDeleted = new EventEmitter();
+  @Output() courseDeleted = new EventEmitter<number>();
 
   constructor() { }
 
