@@ -1,0 +1,15 @@
+@import "../../../styles.scss";
+
+:host {
+  display: block;
+  margin-bottom: 4em;
+  .load-more {
+    padding: 1em 0;
+    text-align: center;
+    a {
+      line-height: normal;
+      text-decoration: underline;
+      color: $link-color;
+    }
+  }
+}

@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+$dark-color: #000000e0;
+$light-color: #0000000d;
+$white: #ffffff;
+$link-color: #3f51b5;
+$green-buttom: #61a500;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
+  background-color: $light-color;
+}
+
+.container {
+  padding: 0 4em;
+}
+
+.search-input {
+  .mat-form-field-appearance-outline {
+    .mat-form-field-outline {
+      background-color: $white;
+      border-radius: 5px;
+    }
+  }
+}

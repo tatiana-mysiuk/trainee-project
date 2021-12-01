@@ -1,0 +1,9 @@
+@import "../../styles.scss";
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 0;
+  background-color: $dark-color;
+  color: $white;
+}
