@@ -20,6 +20,7 @@ import { SetBorderDirective } from './directives/set-border.directive';
 import { DurationPipe } from './pipes/duration.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { ConfirmationDialogComponent } from './courses-page/single-course/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     SetBorderDirective,
     DurationPipe,
     OrderByPipe,
-    FilterPipe
+    FilterPipe,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +47,9 @@ import { FilterPipe } from './pipes/filter.pipe';
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ],
   providers: [
     FilterPipe

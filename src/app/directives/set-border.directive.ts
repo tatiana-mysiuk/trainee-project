@@ -9,8 +9,8 @@ export class SetBorderDirective {
   upcomingCourseColor = 'blue';
 
   constructor(
-    private element: ElementRef,
-    private render: Renderer2) {}
+    private _element: ElementRef,
+    private _render: Renderer2) {}
 
   @Input() set appSetBorder(creationDate: Date) {
     let currentDate = new Date();
@@ -22,7 +22,7 @@ export class SetBorderDirective {
       this.borderColor = this.upcomingCourseColor;
     }
 
-    this.render.setStyle(this.element.nativeElement, 'borderColor', this.borderColor);
+    this._render.setStyle(this._element.nativeElement, 'borderColor', this.borderColor);
   };
 
   private isFreshCourse(days: number, currentDate: any, creationDate: any ): boolean {

@@ -17,7 +17,13 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch() {
-    const filterKey = this.searchRequest;
-    this.courseFilter.emit(filterKey);
+    const filterKey = this.searchRequest.trim();
+    if (filterKey != '') {
+      this.courseFilter.emit(filterKey);
+    }
+  }
+
+  onSearchRequestCnange() {
+    this.courseFilter.emit(this.searchRequest.trim());
   }
 }
