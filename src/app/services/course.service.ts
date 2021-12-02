@@ -37,12 +37,16 @@ export class CourseService {
       }
     ];
 
-    return this._courses;
+    return [...this._courses];
   }
 
-  createCourse (course: CourseData): CourseData[] {
+  resetFilter():CourseData[] {
+    return [...this._courses];
+  }
+
+  createCourse(course: CourseData): CourseData[] {
     this._courses.push(course);
-    return this._courses;
+    return [...this._courses];
   }
 
   getCourseById(courseId: number): any {
@@ -55,6 +59,6 @@ export class CourseService {
 
   deleteCourse(courseId: number): CourseData[] {
     this._courses = this._courses.filter(course => course.id != courseId);
-    return this._courses;
+    return [...this._courses];
   }
 }

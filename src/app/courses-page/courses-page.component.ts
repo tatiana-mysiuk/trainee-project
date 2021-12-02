@@ -11,7 +11,6 @@ import { CourseService } from '../services/course.service';
 })
 export class CoursesPageComponent implements OnInit {
   public courses: CourseData[] = [];
-  private _courses: CourseData[] = [];
   public noDataMessage: string = 'No data. Feel free to add new course';
 
   constructor(
@@ -19,8 +18,7 @@ export class CoursesPageComponent implements OnInit {
     private _courseService: CourseService ) { }
 
   ngOnInit(): void {
-    this._courses = this._courseService.getCourseList();
-    this.courses = [...this._courses];
+    this.courses = this._courseService.getCourseList();
   }
 
   trackByCourseId(index: number, course: any) {
@@ -29,7 +27,7 @@ export class CoursesPageComponent implements OnInit {
 
   onCourseFilter(searchRequest: string) {
     if (searchRequest == '') {
-      this.courses = this._courses;
+      this.courses = this._courseService.resetFilter();
     } else {
       this.courses = this._filterPipe.transform(this.courses, searchRequest);
     }

@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  title: string = 'Login';
+  enteredEmail: string = '';
+  enteredPassword: string = '';
 
   constructor() { }
 
@@ -13,7 +16,7 @@ export class LoginComponent implements OnInit {
     return;
   }
 
-  onLogout() {
-    console.log('log out');
+  onLogin() {
+    console.log('login')
   }
 }

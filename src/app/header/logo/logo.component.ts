@@ -4,8 +4,10 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-logo',
   template: `
     <div class="container logo-container">
-      <mat-icon aria-hidden="false" aria-label="LOgo">play_circle_outline</mat-icon>
-      <span>{{ title }}</span>
+      <a routerLink="" class="router-link">
+        <mat-icon aria-hidden="false" aria-label="LOgo">play_circle_outline</mat-icon>
+        <span>{{ title }}</span>
+      </a>
     </div>`,
   styles: [`
     .logo-container {
