@@ -13,8 +13,8 @@ export class SetBorderDirective {
     private _render: Renderer2) {}
 
   @Input() set appSetBorder(creationDate: Date) {
-    let currentDate = new Date();
-    let isFresh = this.isFreshCourse(14, currentDate, creationDate);
+    let currentDate: Date = new Date();
+    let isFresh = this.isFreshCourse(14, currentDate.getTime(), creationDate.getTime());
 
     if ( creationDate < currentDate && isFresh ) {
       this.borderColor = this.freshCourseColor;
@@ -25,7 +25,7 @@ export class SetBorderDirective {
     this._render.setStyle(this._element.nativeElement, 'borderColor', this.borderColor);
   };
 
-  private isFreshCourse(days: number, currentDate: any, creationDate: any ): boolean {
+  private isFreshCourse(days: number, currentDate: number, creationDate: number ): boolean {
     let msPerDay = 1000 * 60 *60 * 24;
     return (currentDate - creationDate) / msPerDay <= days;
   }
