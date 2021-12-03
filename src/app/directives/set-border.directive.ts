@@ -4,9 +4,9 @@ import { Directive, Input, ElementRef, Renderer2 } from '@angular/core';
   selector: '[appSetBorder]'
 })
 export class SetBorderDirective {
-  borderColor = 'transparent';
-  freshCourseColor = 'green';
-  upcomingCourseColor = 'blue';
+  private borderColor = 'transparent';
+  private freshCourseColor = 'green';
+  private upcomingCourseColor = 'blue';
 
   constructor(
     private _element: ElementRef,

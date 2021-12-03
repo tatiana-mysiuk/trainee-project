@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-//import { Subscription } from 'rxjs';
-
+import { Subscription } from 'rxjs';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title: string = 'Videocourses';
-  showBreadcrumbs: boolean = true;
-  //private _urlSubscription: Subscription = null;
-  private _urlSubscription: any = null;
+  public title: string = 'Videocourses';
+  public isAuthenticated: boolean = false;
+  private _urlSubscription: Subscription;
 
-  constructor(public router: Router) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.isAuthenticated = this.authService.isAuthenticated();
     this._urlSubscription = this.router.events.subscribe(value => {
-      this.showBreadcrumbs = this.router.url != '/login';
+      this.isAuthenticated = (this.router.url != '/login') && (this.router.url != '/');
     });
   }
 

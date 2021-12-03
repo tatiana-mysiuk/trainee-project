@@ -6,10 +6,13 @@ import { CoursesPageComponent } from './courses-page/courses-page.component';
 
 const routes: Routes = [
   {
-    path: '', component: CoursesPageComponent
+    path: 'login', component: LoginComponent
   },
   {
-    path: 'login', component: LoginComponent
+    path: '', component: LoginComponent
+  },
+  {
+    path: 'courses', component: CoursesPageComponent
   }
 ];
 

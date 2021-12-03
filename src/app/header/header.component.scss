@@ -7,3 +7,20 @@ header {
   background-color: $dark-color;
   color: $white;
 }
+
+.user-info-wrapper {
+  padding-right: 2em;
+  > div {
+    display: inline-block;
+    &:not(:last-child) {
+      padding-right: 2em;
+    }
+  }
+  mat-icon {
+    vertical-align: middle;
+    padding-right: 0.3em;
+  }
+  a {
+    cursor: pointer;
+  }
+}

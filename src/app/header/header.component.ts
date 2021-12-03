@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-//import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,16 +9,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  showUserInfo: boolean = true;
-  //private _urlSubscription: Subscription = null;
-  private _urlSubscription: any = null;
+  public isAuthenticated: boolean = false;
+  private _urlSubscription: Subscription;
 
-  constructor(public router: Router) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService ) { }
 
   ngOnInit():void {
-    this._urlSubscription = this.router.events.subscribe((event: any) => {
-      this.showUserInfo = this.router.url != '/login';
+    this.isAuthenticated = this.authService.isAuthenticated();
+    this._urlSubscription = this.router.events.subscribe(value => {
+      this.isAuthenticated = (this.router.url != '/login') && (this.router.url != '/');
     });
+  }
+
+  onLogout() {
+    this.authService.logout();
+    this.isAuthenticated = this.authService.isAuthenticated();
   }
 
   ngOnDestroy(): void {

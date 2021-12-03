@@ -1,13 +1,5 @@
-<div class="user-info-wrapper">
-  <div>
-    <a routerLink="/login" routerLinkActive="active-link" class="router-link">
-      <mat-icon aria-hidden="false" aria-label="User">person</mat-icon>
-      <span>User login</span>
-    </a>
-  </div>
-
-  <div>
-    <a (click)="onLogout()"><mat-icon aria-hidden="false" aria-label="Log out">logout</mat-icon></a>
-    <span>Log out</span>
-  </div>
-</div>
+<!--<a routerLink="/login" routerLinkActive="active-link" class="router-link">-->
+<a class="router-link">
+  <mat-icon aria-hidden="false" aria-label="User">person</mat-icon>
+  <span>{{ userLogin }}</span>
+</a>
