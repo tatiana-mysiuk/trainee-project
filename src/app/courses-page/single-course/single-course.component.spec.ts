@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 import { SingleCourseComponent } from './single-course.component';
 import { DurationPipe } from './../../pipes/duration.pipe';
-import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
+import { SetBorderDirective } from 'src/app/directives/set-border.directive';
 
 describe('SingleCourseComponent', () => {
   let component: SingleCourseComponent;
@@ -14,7 +15,8 @@ describe('SingleCourseComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         SingleCourseComponent,
-        DurationPipe
+        DurationPipe,
+        SetBorderDirective
       ],
       imports: [
         MatDialogModule,
