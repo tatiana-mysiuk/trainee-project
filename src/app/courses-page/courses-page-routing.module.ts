@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CoursesPageComponent } from './courses-page.component';
 import { EditCourseComponent } from './edit-course/edit-course.component';
-import { AddCourseComponent } from './add-course/add-course.component';
 import { CourseListComponent } from './course-list/course-list.component';
 
 const routes: Routes = [

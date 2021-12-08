@@ -3,6 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 import { AuthService } from './services/auth.service';
 
 describe('AppComponent', () => {
@@ -10,17 +13,19 @@ describe('AppComponent', () => {
   let component: AppComponent;
 
   beforeEach(async () => {
+
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        BreadcrumbsComponent
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      providers: [
-        AuthService
-      ]
+      providers: [ AuthService ]
     }).compileComponents();
   });
 
