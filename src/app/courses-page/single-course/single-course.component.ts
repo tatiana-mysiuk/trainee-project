@@ -10,15 +10,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
   styleUrls: ['./single-course.component.scss']
 })
 export class SingleCourseComponent {
-  @Input() courseNumber: number = 0;
-  @Input() courseData: CourseData = {
-    id: 0,
-    title: '',
-    creationDate: new Date(),
-    durationMin: 0,
-    description: '',
-    topRated: false
-  };
+  @Input() courseNumber: number;
+  @Input() courseData: CourseData;
 
   @Output() courseDeleted = new EventEmitter<number>();
 

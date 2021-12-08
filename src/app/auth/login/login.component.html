@@ -2,22 +2,26 @@
   <mat-card>
     <h2>{{ title }}</h2>
 
-    <div class="field-lable"><span><b>Email:</b></span><span>*required</span></div>
+    <div class="field-lable" [ngClass]="{'error': invalidEmail}"><span><b>Email:</b></span><span>*required</span></div>
     <mat-form-field appearance="outline">
       <input matInput
         type="email"
         placeholder="Enter email"
         [(ngModel)]="emailInput"
+        #email="ngModel"
         required>
+        <mat-error *ngIf="email.invalid">Email is required</mat-error>
     </mat-form-field>
 
-    <div class="field-lable"><span><b>Password:</b></span><span>*required</span></div>
+    <div class="field-lable" [ngClass]="{'error': invalidPassword}"><span><b>Password:</b></span><span>*required</span></div>
     <mat-form-field appearance="outline">
       <input matInput
         type="password"
         placeholder="Enter password"
         [(ngModel)]="passwordInput"
+        #password="ngModel"
         required>
+        <mat-error *ngIf="password.invalid">Password is required</mat-error>
     </mat-form-field>
 
     <div class="action-container">
