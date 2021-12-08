@@ -1,13 +1,14 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
-
+import { Component, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+
 import { CourseData } from '../../data-models/course-data';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-single-course',
   templateUrl: './single-course.component.html',
-  styleUrls: ['./single-course.component.scss']
+  styleUrls: ['./single-course.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SingleCourseComponent {
   @Input() courseNumber: number = 0;
@@ -22,7 +23,7 @@ export class SingleCourseComponent {
 
   @Output() courseDeleted = new EventEmitter<number>();
 
-  constructor(public dialog: MatDialog) { }
+  constructor( public dialog: MatDialog ) { }
 
   openConfirmationDialog(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
