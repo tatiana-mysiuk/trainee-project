@@ -1,0 +1,34 @@
+@import '../../../styles.scss';
+
+.login-form-container {
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .field-lable {
+    display: flex;
+    justify-content: space-between;
+    &.error {
+      color: $error;
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .action-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      background-color: $green-buttom;
+      color: $white;
+    }
+    a {
+      @include link-style($link-color);
+    }
+  }
+}

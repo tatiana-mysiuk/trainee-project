@@ -1,0 +1,26 @@
+@import '../../../../styles.scss';
+
+.modal-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+hr {
+  margin: 0.5em -24px;
+}
+
+.modal-content {
+  padding: 1em 24px;
+  p {
+    margin: 0;
+  }
+}
+
+.cancel-button {
+  border: 1px solid $light-color;
+}
+
+.del-button {
+  background-color: $green-buttom;
+  color: $white;
+}

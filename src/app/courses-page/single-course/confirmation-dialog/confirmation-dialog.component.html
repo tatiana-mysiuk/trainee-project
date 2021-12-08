@@ -1,0 +1,18 @@
+<div class="modal-title">
+  <h2 mat-dialog-title>Delete course?</h2>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<hr>
+<div mat-dialog-content class="modal-content">
+  <p>Are you sure you want to delete</p>
+  <p>Video course {{ data.courseName }}</p>
+</div>
+<hr>
+
+<div mat-dialog-actions align="end" class="action-buttons">
+  <button mat-flat-button mat-dialog-close cdkFocusInitial class="cancel-button">Cancel</button>
+  <button mat-flat-button [mat-dialog-close]="true" class="del-button">Yes, delete</button>
+</div>

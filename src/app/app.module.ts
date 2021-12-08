@@ -14,12 +14,14 @@ import { CoursesPageComponent } from './courses-page/courses-page.component';
 import { SearchComponent } from './courses-page/search/search.component';
 import { AddCourseComponent } from './courses-page/add-course/add-course.component';
 import { SingleCourseComponent } from './courses-page/single-course/single-course.component';
-import { LoginComponent } from './login/login.component';
 import { PaginationComponent } from './courses-page/pagination/pagination.component';
 import { SetBorderDirective } from './directives/set-border.directive';
 import { DurationPipe } from './pipes/duration.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { ConfirmationDialogComponent } from './courses-page/single-course/confirmation-dialog/confirmation-dialog.component';
+import { UserInfoComponent } from './auth/user-info/user-info.component';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +34,14 @@ import { FilterPipe } from './pipes/filter.pipe';
     SearchComponent,
     AddCourseComponent,
     SingleCourseComponent,
-    LoginComponent,
     PaginationComponent,
     SetBorderDirective,
     DurationPipe,
     OrderByPipe,
-    FilterPipe
+    FilterPipe,
+    ConfirmationDialogComponent,
+    UserInfoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,9 @@ import { FilterPipe } from './pipes/filter.pipe';
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ],
   providers: [
     FilterPipe

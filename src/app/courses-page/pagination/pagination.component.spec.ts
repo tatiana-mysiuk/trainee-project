@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCardModule } from '@angular/material/card';
 
 import { PaginationComponent } from './pagination.component';
 
@@ -8,7 +9,8 @@ describe('PaginationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PaginationComponent ]
+      declarations: [ PaginationComponent ],
+      imports: [ MatCardModule ]
     })
     .compileComponents();
   });

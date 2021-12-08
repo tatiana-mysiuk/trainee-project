@@ -3,6 +3,14 @@ $light-color: #0000000d;
 $white: #ffffff;
 $link-color: #3f51b5;
 $green-buttom: #61a500;
+$error: #ff0000;
+
+@mixin link-style($color) {
+  padding: 0;
+  line-height: normal;
+  text-decoration: underline;
+  color: $color;
+}
 
 html, body {
   height: 100%;
@@ -26,4 +34,18 @@ body {
       border-radius: 5px;
     }
   }
+}
+
+.router-link {
+  display: inline-block;
+  color: $white;
+  text-decoration: none;
+  span {
+    border-bottom: 1px solid transparent;
+  }
+  /*&.active-link {
+    span {
+      border-bottom-color: $white;
+    }
+  }*/
 }

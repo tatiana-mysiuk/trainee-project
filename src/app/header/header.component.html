@@ -1,4 +1,14 @@
 <header>
   <app-logo></app-logo>
-  <app-login></app-login>
+
+  <div class="user-info-wrapper">
+    <app-user-info *ngIf="isAuthenticated"></app-user-info>
+
+    <div *ngIf="isAuthenticated">
+      <a (click)="onLogout()">
+        <mat-icon aria-hidden="false" aria-label="Log out">logout</mat-icon>
+        <span>Log out</span>
+      </a>
+    </div>
+  </div>
 </header>
