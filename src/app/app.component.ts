@@ -18,7 +18,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated();
     this._urlSubscription = this.router.events.subscribe(value => {
       this.isAuthenticated = (this.router.url != '/login') && (this.router.url != '/');
     });

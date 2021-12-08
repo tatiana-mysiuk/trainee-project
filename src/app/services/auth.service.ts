@@ -6,14 +6,12 @@ import { AuthData } from '../data-models/auth-data';
   providedIn: 'root'
 })
 export class AuthService {
-  private token: string | undefined;
   private _isAuthenticated: boolean = false;
 
   constructor(private router: Router) { }
 
   public login(authData: AuthData) {
     const token = '1234567890';
-    this.token = token;
     this._isAuthenticated = true;
     this._saveAuthData(token, authData.email);
     this.router.navigate(['courses']);
@@ -21,7 +19,6 @@ export class AuthService {
   }
 
   public logout() {
-    this.token = undefined;
     this._isAuthenticated = false;
     this.router.navigate(['']);
     const userLogin = this.getUserInfo()

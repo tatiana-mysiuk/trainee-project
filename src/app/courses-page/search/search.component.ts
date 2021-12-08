@@ -10,7 +10,7 @@ export class SearchComponent {
 
   @Output() courseFilter = new EventEmitter<string>();
 
-  onSearch() {
+  onSearch(): void {
     const filterKey = this.searchRequest.trim();
     if (filterKey != '') {
       this.courseFilter.emit(filterKey);

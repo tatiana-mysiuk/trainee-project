@@ -10,6 +10,9 @@
   .field-lable {
     display: flex;
     justify-content: space-between;
+    &.error {
+      color: $error;
+    }
   }
 
   mat-form-field {
