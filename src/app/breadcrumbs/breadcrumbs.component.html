@@ -1,3 +1,6 @@
-<div class="container">
-  Courses
-</div>
+<ul class="container breadcrumbs-container">
+  <li *ngFor=" let item of breadcrumbs; let lastItem=last" title="{{item.itemLabel}}">
+    <a *ngIf="!lastItem" routerLink="{{item.itemUrl}}">{{ item.itemLabel }}</a>
+    <span *ngIf="lastItem" class="active">{{ item.itemLabel }}</span>
+  </li>
+</ul>

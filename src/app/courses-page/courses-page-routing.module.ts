@@ -10,15 +10,23 @@ const routes: Routes = [
   {
     path: '',
     component: CoursesPageComponent,
+    //data: { itemLabel: 'Courses' },
+
     children: [
       {
-        path: '', component: CourseListComponent
+        path: '',
+        component: CourseListComponent,
+        data: { itemLabel: 'Courses' }
       },
       {
-        path: 'add-course', component: EditCourseComponent
+        path: 'add-course',
+        component: EditCourseComponent,
+        data: { itemLabel: 'Add course' }
       },
       {
-        path: ':id', component: EditCourseComponent
+        path: ':id',
+        component: EditCourseComponent,
+        data: { itemLabel: 'New courses' }
       }
     ]
   }

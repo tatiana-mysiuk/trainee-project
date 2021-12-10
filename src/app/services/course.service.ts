@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { CourseData } from '../data-models/course-data';
 
 @Injectable({
@@ -7,9 +8,7 @@ import { CourseData } from '../data-models/course-data';
 export class CourseService {
   private _courses: CourseData[] = [];
 
-  constructor() { }
-
-  getCourseList() {
+  constructor() {
     this._courses = [
       {
         id: 1,
@@ -36,7 +35,9 @@ export class CourseService {
         topRated: false
       }
     ];
+   }
 
+  getCourseList() {
     return [...this._courses];
   }
 
@@ -53,8 +54,12 @@ export class CourseService {
     return this._courses.find(course => course.id == courseId);
   }
 
-  updateCourse(course: CourseData) {
+  addCourse(course: CourseData): string {
+    return 'successfully saved';
+  }
 
+  updateCourse(course: CourseData): string {
+    return 'successfully saved';
   }
 
   deleteCourse(courseId: number): CourseData[] {
