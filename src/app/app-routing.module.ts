@@ -16,10 +16,13 @@ const routes: Routes = [
     path: 'courses',
     loadChildren: () => import('./courses-page/courses-page.module').then(m => m.CoursesPageModule),
     canActivate: [AuthGuard],
-    data: { itemLabel: 'Courses' }
+    canLoad: [AuthGuard]
   },
   {
-    path: '**', component: NotFoundComponent
+    path: '404', component: NotFoundComponent
+  },
+  {
+    path: '**', redirectTo: '/404'
   }
 ];
 

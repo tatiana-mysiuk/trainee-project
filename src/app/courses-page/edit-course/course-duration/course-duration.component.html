@@ -4,6 +4,7 @@
     type="number"
     placeholder="Duration"
     [(ngModel)]="duration"
+    (change)="onChange(duration)"
     required>
 </mat-form-field>
 

@@ -3,8 +3,7 @@
   <input matInput
     type="date"
     placeholder="yyyy-MM-dd"
-    value="{{ creationDate | date:'yyyy-MM-dd' }}"
-    [ngModel]="creationDate"
-    (ngModelChange)="creationDate = $event"
+    [(ngModel)]="dateToString"
+    (change)="onChange(dateToString)"
     required>
 </mat-form-field>

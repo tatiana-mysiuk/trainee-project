@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 
 export interface Breadcrumb{
   itemLabel: string;
-    itemUrl: string;
+  itemUrl: string;
 }
 
 @Component({
@@ -12,44 +12,37 @@ export interface Breadcrumb{
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.scss']
 })
-export class BreadcrumbsComponent implements OnInit {
-  public breadcrumbs: Breadcrumb[] = [
-    {
-      itemLabel: 'Courses',
-      itemUrl: '/courses'
-    }
-  ];
+export class BreadcrumbsComponent implements OnInit, OnDestroy {
+  public breadcrumbs: Breadcrumb[];
+  private _urlSubscription: Subscription;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute
-  ) { }
+  constructor( private router: Router ) { }
 
   ngOnInit(): void {
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
-      //this.breadcrumbs = this.createBreadcrumbs(this.route.root);
+    this.breadcrumbs = this._createBreadcrumbs(this.router.routerState.snapshot.url);
+
+    this._urlSubscription = this.router.events.pipe(filter( event => event instanceof NavigationEnd) ).subscribe(event => {
+      this.breadcrumbs = this._createBreadcrumbs(this.router.routerState.snapshot.url);
     });
   }
 
-  private createBreadcrumbs(route: ActivatedRoute): Breadcrumb[] {
-    let breadcrumbs: Breadcrumb[];
-    let children: ActivatedRoute[] = route.children;
-    console.log(route);
-    console.log(route.children);
+  private _createBreadcrumbs(currentUrl: string): Breadcrumb[] {
+    let breadcrumbs: Breadcrumb[] = [];
 
-    for (let child of children) {
-      let routeURL: string = child.snapshot.url.map(segment => segment.path).join("/");
-      console.log(routeURL);
-    }
+    currentUrl.split('/').forEach(item => {
+      if ( item !== '' ) {
+        let itemLabel = (item[0].toUpperCase() + item.slice(1)).replace('-', ' ');
+        breadcrumbs.push({
+          itemLabel: itemLabel,
+          itemUrl: `/${item}`
+        })
+      }
+    });
 
-    breadcrumbs =  this.breadcrumbs;
     return breadcrumbs;
   }
 
-
-
+  ngOnDestroy(): void {
+    this._urlSubscription.unsubscribe();
+  }
 }
-
-
-
-
