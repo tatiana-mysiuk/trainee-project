@@ -14,6 +14,8 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { UserInfoComponent } from './auth/user-info/user-info.component';
 import { LoginComponent } from './auth/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { RouteReuseStrategy } from '@angular/router';
+import { RouteReuseService } from './services/route-reuse.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MaterialModule
   ],
   providers: [
-    FilterPipe
+    FilterPipe,
+    {provide: RouteReuseStrategy, useClass: RouteReuseService}
   ],
   bootstrap: [AppComponent]
 })

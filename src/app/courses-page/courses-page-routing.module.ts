@@ -15,28 +15,33 @@ const routes: Routes = [
       {
         path: '',
         component: CourseListComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        data: {keyPath: 'list', reuse: true}
       },
       {
         path: 'add-course',
         component: EditCourseComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        data: {keyPath: 'add'}
       },
       /*{
-        path: '404', component: NotFoundComponent
+        path: '404',
+        component: NotFoundComponent,
+        data: {keyPath: 'notfound'}
       },*/
       {
         path: ':alias',
         component: EditCourseComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        data: {keyPath: 'edit'}
       }
-    ]
+    ],
+    data: {keyPath: 'courses'}
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-  providers: [AuthGuard]
+  exports: [RouterModule]
 })
 export class CoursesPageRoutingModule { }

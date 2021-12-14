@@ -7,28 +7,36 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path: 'login', component: LoginComponent
-  },
-  {
-    path: '', redirectTo: 'login', pathMatch: 'full'
+    path: 'login',
+    component: LoginComponent,
+    data: {keyPath: 'login'}
   },
   {
     path: 'courses',
     loadChildren: () => import('./courses-page/courses-page.module').then(m => m.CoursesPageModule),
     canActivate: [AuthGuard],
-    canLoad: [AuthGuard]
+    canLoad: [AuthGuard],
+    data: {keyPath: 'courses'}
   },
   {
-    path: '404', component: NotFoundComponent
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+    data: {keyPath: 'login'}
   },
   {
-    path: '**', redirectTo: '/404'
+    path: '404',
+    component: NotFoundComponent,
+    data: {keyPath: 'notfound'}
+  },
+  {
+    path: '**', redirectTo: '404',
+    data: {keyPath: 'notfound'}
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  providers: [AuthGuard]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
