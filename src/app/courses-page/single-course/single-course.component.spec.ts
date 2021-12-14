@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -20,7 +19,6 @@ describe('SingleCourseComponent', () => {
         SetBorderDirective
       ],
       imports: [
-        RouterTestingModule,
         MatDialogModule,
         MatIconModule,
         MatCardModule

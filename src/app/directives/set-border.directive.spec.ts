@@ -5,9 +5,9 @@ import { SetBorderDirective } from './set-border.directive';
 
 @Component({
   template: `
-  <div [appSetBorder]="freshDate"></div>
-  <div [appSetBorder]="futureDate"></div>
-  <div [appSetBorder]="testDate"></div>
+  <div appSetBorder="freshDate"></div>
+  <div appSetBorder="futureDate"></div>
+  <div appSetBorder="testDate"></div>
   <div></div>`
 })
 class TestComponent {
@@ -17,7 +17,7 @@ class TestComponent {
   testDate: Date = new Date(this.currentDate + 20  * 24 * 60 * 60 * 1000);
 }
 
-fdescribe('SetBorderDirective', () => {
+describe('SetBorderDirective', () => {
   let elemWdir: any;
   let divWOdir: any;
 
@@ -53,6 +53,9 @@ fdescribe('SetBorderDirective', () => {
   it('should be default border color of 3rd <div>', () => {
     const brColor = elemWdir[2].nativeElement.style.borderColor;
     expect(brColor).toBe('transparent');
+    //const dir = elemWdir[2].injector.get(SetBorderDirective) as SetBorderDirective;
+    //const brColor = elemWdir[2].nativeElement.style.borderColor;
+    //expect(brColor).toBe(dir.borderColor);
   });
 
   it('<div> without  directive should not have a customProperty', () => {
