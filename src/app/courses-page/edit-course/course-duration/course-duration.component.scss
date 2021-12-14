@@ -1,0 +1,12 @@
+.field-lable {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-form-field {
+  width: 25%;
+  &+ span {
+    padding-left: 2em;
+  }
+}

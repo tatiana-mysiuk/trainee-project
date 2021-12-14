@@ -1,0 +1,28 @@
+@import '../../styles.scss';
+
+mat-card {
+  width: 30%;
+  padding: 4em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  button {
+    margin-bottom: 4em;
+  }
+
+  mat-icon {
+    padding-right: 0.5em;
+  }
+
+  .not-found-message {
+    * {
+      vertical-align: middle;
+    }
+    mat-icon {
+      color: $error;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+mat-card {
+  width: 75%;
+  margin: 2em auto;
+}
+
+.field-lable {
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-form-field {
+  width: 100%;
+  textarea {
+    line-height: 1.5em;
+  }
+}
+
+.action-container {
+  text-align: right;
+  button:not(:last-child) {
+    margin-right: 1em;
+  }
+}
