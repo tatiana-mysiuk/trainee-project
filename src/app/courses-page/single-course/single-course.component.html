@@ -10,10 +10,10 @@
     <p>{{ courseData.description }}</p>
 
     <div class="toolbar">
-      <a [routerLink]="['/courses/', courseData.alias]"  mat-flat-button color="primary">
+      <button mat-flat-button color="primary">
         <mat-icon aria-hidden="false" aria-label="Edit">edit</mat-icon>
         <span>Edit</span>
-      </a>
+      </button>
 
       <button mat-flat-button color="primary" (click)="openConfirmationDialog()">
         <mat-icon aria-hidden="false" aria-label="Delete">delete_outline</mat-icon>

@@ -1,6 +1,6 @@
 <app-header></app-header>
 <main>
-  <app-breadcrumbs *ngIf="showBreadcrumbs"></app-breadcrumbs>
+  <app-breadcrumbs *ngIf="isAuthenticated"></app-breadcrumbs>
   <router-outlet></router-outlet>
 </main>
 <app-footer class="sticky-footer" [title]="title"></app-footer>

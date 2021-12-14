@@ -1,6 +1,5 @@
 export interface CourseData {
-  id: number | null;
-  alias: string;
+  id: number;
   title: string;
   creationDate: Date;
   durationMin: number;
