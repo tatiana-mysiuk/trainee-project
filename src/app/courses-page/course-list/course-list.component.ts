@@ -22,9 +22,12 @@ export class CourseListComponent implements OnInit {
 
   ngOnInit(): void {
     this.courses = this._courseService.getCourseList();
+    this._courseService.coursesAdded.subscribe( course => {
+      this.courses.push(course);
+    });
   }
 
-  trackByCourseId(index: number, course: any): number {
+  trackByCourseId(index: number, course: CourseData): number | null {
     return course.id;
   }
 

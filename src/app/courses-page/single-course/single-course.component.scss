@@ -25,9 +25,11 @@ mat-icon {
 
 .course-description {
   display: flex;
+  justify-content: space-between;
   .toolbar {
     padding-left: 2em;
     white-space: nowrap;
+    align-self: flex-end;
   }
 }
 
