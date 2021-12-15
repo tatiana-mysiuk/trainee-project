@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { CourseData } from '../data-models/course-data';
 
 @Injectable({
@@ -8,6 +8,8 @@ import { CourseData } from '../data-models/course-data';
 })
 export class CourseService {
   private _courses: CourseData[] = [];
+  private _coursesAddedSub = new Subject<CourseData[]>();
+  public coursesAdded = this._coursesAddedSub.asObservable();
 
   constructor(private router: Router) {
     this._courses = [
@@ -49,11 +51,6 @@ export class CourseService {
     return [...this._courses];
   }
 
-  createCourse(course: CourseData): CourseData[] {
-    this._courses.push(course);
-    return [...this._courses];
-  }
-
   getCourseById(courseId: number): CourseData | undefined {
     return this._courses.find(course => course.id == courseId);
   }
@@ -65,10 +62,15 @@ export class CourseService {
   addCourse(course: CourseData): string {
     course.id = this._createId();
     this._courses.push(course);
+    this._coursesAddedSub.next([...this._courses]);
     return 'successfully saved';
   }
 
   updateCourse(course: CourseData): string {
+    const updatedCourse = course;
+    this._courses = this._courses.filter( course => course.id != updatedCourse.id );
+    this._courses.push(updatedCourse);
+    this._coursesAddedSub.next([...this._courses]);
     return 'successfully saved';
   }
 

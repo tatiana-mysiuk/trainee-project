@@ -46,7 +46,6 @@ export class RouteReuseService implements RouteReuseStrategy {
     } else {
       keyPath = '-';
     }
-    console.log(keyPath, this.handlers)
     return keyPath;
   }
 }
