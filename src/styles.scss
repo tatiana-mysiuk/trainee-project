@@ -49,3 +49,11 @@ body {
     }
   }*/
 }
+
+button.cancel-button {
+  border: 1px solid $light-color;
+}
+.green-button {
+  background-color: $green-buttom;
+  color: $white;
+}

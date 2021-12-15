@@ -1,0 +1,10 @@
+<div class="field-lable"><span><b>Date:</b></span><span>*required</span></div>
+<mat-form-field appearance="outline">
+  <input matInput
+    type="date"
+    placeholder="yyyy-MM-dd"
+    value="{{ creationDate | date:'yyyy-MM-dd' }}"
+    [ngModel]="creationDate"
+    (ngModelChange)="creationDate = $event"
+    required>
+</mat-form-field>

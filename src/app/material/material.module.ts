@@ -9,7 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [],
   imports: [
-    MatInputModule,
+    MatIconModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
