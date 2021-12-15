@@ -42,8 +42,21 @@ export class EditCourseComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  onSave() {
+  onSave(): void {
+    let message: string;
 
+    if ( this.course.id == 0 ) {
+      message = this.courseService.updateCourse(this.course);
+      this.location.back();
+
+    } else if ( this.course.id > 0 ) {
+      message = this.courseService.updateCourse(this.course);
+      this.location.back();
+
+    } else {
+      message = 'Something happened wrong. Try again';
+    }
+    console.log(message);
   }
 
   ngOnDestroy(): void {

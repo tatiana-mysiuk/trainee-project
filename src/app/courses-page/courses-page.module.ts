@@ -17,6 +17,7 @@ import { EditCourseComponent } from './edit-course/edit-course.component';
 import { CourseDateCreationComponent } from './edit-course/course-date-creation/course-date-creation.component';
 import { CourseDurationComponent } from './edit-course/course-duration/course-duration.component';
 import { AuthorsComponent } from './edit-course/authors/authors.component';
+import { ConfirmationDialogComponent } from './single-course/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AuthorsComponent } from './edit-course/authors/authors.component';
     SetBorderDirective,
     CourseDateCreationComponent,
     CourseDurationComponent,
-    AuthorsComponent
+    AuthorsComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,

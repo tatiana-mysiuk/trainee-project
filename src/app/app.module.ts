@@ -11,7 +11,6 @@ import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './header/logo/logo.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { FilterPipe } from './pipes/filter.pipe';
-import { ConfirmationDialogComponent } from './courses-page/single-course/confirmation-dialog/confirmation-dialog.component';
 import { UserInfoComponent } from './auth/user-info/user-info.component';
 import { LoginComponent } from './auth/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -24,7 +23,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     LogoComponent,
     BreadcrumbsComponent,
     FilterPipe,
-    ConfirmationDialogComponent,
     UserInfoComponent,
     LoginComponent,
     NotFoundComponent
@@ -35,9 +33,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule
-  ],
-  entryComponents: [
-    ConfirmationDialogComponent
   ],
   providers: [
     FilterPipe
