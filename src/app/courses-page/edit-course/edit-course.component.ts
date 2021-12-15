@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 import { CourseService } from '../../services/course.service';
 import { CourseData } from 'src/app/data-models/course-data';
@@ -10,7 +11,7 @@ import { CourseData } from 'src/app/data-models/course-data';
   templateUrl: './edit-course.component.html',
   styleUrls: ['./edit-course.component.scss']
 })
-export class EditCourseComponent implements OnInit {
+export class EditCourseComponent implements OnInit, OnDestroy {
   public authorsInput: string = '';
   public course: CourseData = {
     id: 0,
@@ -20,6 +21,7 @@ export class EditCourseComponent implements OnInit {
     description: '',
     topRated: false,
   };
+  private _routeParamMap: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,7 +30,7 @@ export class EditCourseComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this._routeParamMap = this.route.paramMap.subscribe(params => {
       if (params.keys.length != 0 ) {
         let id = Number( params.get('id') );
         this.course = this.courseService.getCourseById(id);
@@ -44,4 +46,7 @@ export class EditCourseComponent implements OnInit {
 
   }
 
+  ngOnDestroy(): void {
+    this._routeParamMap.unsubscribe();
+  }
 }
