@@ -26,7 +26,9 @@ export class SingleCourseComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this._onDeleteCourse(this.courseData.id);
+        if ( this.courseData.id !== null ) {
+          this._onDeleteCourse(this.courseData.id);
+        }
       }
     });
   }

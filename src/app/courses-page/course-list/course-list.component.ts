@@ -22,7 +22,7 @@ export class CourseListComponent implements OnInit {
     this.courses = this._courseService.getCourseList();
   }
 
-  trackByCourseId(index: number, course: any) {
+  trackByCourseId(index: number, course: any): number {
     return course.id;
   }
 

@@ -1,32 +1,34 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
+import { AuthGuard } from '../auth/auth.guard';
 import { CoursesPageComponent } from './courses-page.component';
 import { EditCourseComponent } from './edit-course/edit-course.component';
 import { CourseListComponent } from './course-list/course-list.component';
+//import { NotFoundComponent } from '../not-found/not-found.component';
 
 const routes: Routes = [
   {
     path: '',
     component: CoursesPageComponent,
-    //data: { itemLabel: 'Courses' },
-
     children: [
       {
         path: '',
         component: CourseListComponent,
-        data: { itemLabel: 'Courses' }
+        canActivate: [AuthGuard]
       },
       {
         path: 'add-course',
         component: EditCourseComponent,
-        data: { itemLabel: 'Add course' }
+        canActivate: [AuthGuard]
       },
+      /*{
+        path: '404', component: NotFoundComponent
+      },*/
       {
-        path: ':id',
+        path: ':alias',
         component: EditCourseComponent,
-        data: { itemLabel: 'New courses' }
+        canActivate: [AuthGuard]
       }
     ]
   }
@@ -34,6 +36,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class CoursesPageRoutingModule { }
