@@ -17,7 +17,7 @@ class TestComponent {
   testDate: Date = new Date(this.currentDate + 20  * 24 * 60 * 60 * 1000);
 }
 
-fdescribe('SetBorderDirective', () => {
+describe('SetBorderDirective', () => {
   let elemWdir: any;
   let divWOdir: any;
 

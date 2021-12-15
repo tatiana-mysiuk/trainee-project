@@ -19,6 +19,7 @@ describe('CourseListComponent', () => {
   let mockCourseData: CourseData[] = [
     {
       id: 1,
+      alias: 'course-name',
       title: 'Course Name',
       creationDate: new Date(),
       durationMin: 100,

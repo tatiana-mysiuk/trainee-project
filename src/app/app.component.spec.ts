@@ -45,8 +45,8 @@ describe('AppComponent', () => {
     expect(component.title).toEqual('Videocourses');
   });
 
-  it(`should have 'isAuthenticated' property equal to true`, () => {
-    expect(component.isAuthenticated).toEqual(true);
+  it(`should have 'showBreadcrumbs' property equal to true`, () => {
+    expect(component.showBreadcrumbs).toEqual(true);
   });
 
   /*it('should render title', () => {
