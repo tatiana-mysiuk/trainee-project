@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 import { CourseData } from '../data-models/course-data';
 
 @Injectable({
@@ -7,11 +8,14 @@ import { CourseData } from '../data-models/course-data';
 })
 export class CourseService {
   private _courses: CourseData[] = [];
+  private _coursesAddedSub = new Subject<CourseData[]>();
+  public coursesAdded = this._coursesAddedSub.asObservable();
 
-  constructor() {
+  constructor(private router: Router) {
     this._courses = [
       {
         id: 1,
+        alias: 'name-tag1',
         title: 'Name Tag1',
         creationDate: new Date('11/29/2021'),
         durationMin: 75,
@@ -20,6 +24,7 @@ export class CourseService {
       },
       {
         id: 2,
+        alias: 'name-tag2',
         title: 'Name Tag2',
         creationDate: new Date('11/15/2021'),
         durationMin: 85,
@@ -28,6 +33,7 @@ export class CourseService {
       },
       {
         id: 3,
+        alias: 'name-tag3',
         title: 'Name Tag3',
         creationDate: new Date('12/20/2021'),
         durationMin: 90,
@@ -45,25 +51,44 @@ export class CourseService {
     return [...this._courses];
   }
 
-  createCourse(course: CourseData): CourseData[] {
-    this._courses.push(course);
-    return [...this._courses];
-  }
-
-  getCourseById(courseId: number): any {
+  getCourseById(courseId: number): CourseData | undefined {
     return this._courses.find(course => course.id == courseId);
   }
 
+  getCourseByAlias(courseAlias: string): CourseData | undefined {
+    return this._courses.find(course => course.alias == courseAlias);
+  }
+
   addCourse(course: CourseData): string {
+    course.id = this._createId();
+    this._courses.push(course);
+    this._coursesAddedSub.next([...this._courses]);
     return 'successfully saved';
   }
 
   updateCourse(course: CourseData): string {
+    const updatedCourse = course;
+    this._courses = this._courses.filter( course => course.id != updatedCourse.id );
+    this._courses.push(updatedCourse);
+    this._coursesAddedSub.next([...this._courses]);
     return 'successfully saved';
   }
 
   deleteCourse(courseId: number): CourseData[] {
     this._courses = this._courses.filter(course => course.id != courseId);
     return [...this._courses];
+  }
+
+  private _createId(): number {
+    let id = this._courses.reduce( (previous, current) => {
+      if (previous.id !== null && current.id !== null && previous.id > current.id) {
+        return previous;
+      }
+      return current;
+    }).id;
+
+    id = id !== null ? id + 1 : 1;
+
+    return id;
   }
 }

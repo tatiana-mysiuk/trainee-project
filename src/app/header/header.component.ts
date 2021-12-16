@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -17,15 +17,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService ) { }
 
   ngOnInit():void {
-    this.isAuthenticated = this.authService.isAuthenticated();
-    this._urlSubscription = this.router.events.subscribe(value => {
-      this.isAuthenticated = (this.router.url != '/login') && (this.router.url != '/');
+    this._urlSubscription = this.router.events.pipe(filter( event => event instanceof NavigationEnd )).subscribe(event => {
+      this.isAuthenticated = this.authService.isAuthenticated();
     });
   }
 
   onLogout() {
     this.authService.logout();
-    this.isAuthenticated = this.authService.isAuthenticated();
   }
 
   ngOnDestroy(): void {

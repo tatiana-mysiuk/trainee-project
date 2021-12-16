@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-course-duration',
@@ -8,7 +8,11 @@ import { Component, Input } from '@angular/core';
 export class CourseDurationComponent {
 
   @Input() duration: number;
+  @Output() durationChanged = new EventEmitter<number>();
 
   constructor() { }
 
+  onChange(duration: number): void {
+    this.durationChanged.emit(duration);
+  }
 }
