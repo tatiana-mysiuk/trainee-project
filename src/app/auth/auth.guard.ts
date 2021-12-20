@@ -17,14 +17,14 @@ export class AuthGuard implements CanActivate, CanLoad {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
+    return this.authService.isAuthenticated();
+  }
+
+  canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     const isAuthenticated = this.authService.isAuthenticated();
     if (!isAuthenticated) {
       this.router.navigate(['']);
     }
     return isAuthenticated;
-  }
-
-  canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-     return this.authService.isAuthenticated();
   }
 }

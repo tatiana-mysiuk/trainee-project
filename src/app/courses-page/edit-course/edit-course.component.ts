@@ -40,7 +40,6 @@ export class EditCourseComponent implements OnInit, OnDestroy {
           const courseByAlis = this.courseService.getCourseByAlias(alias);
           if ( courseByAlis !== undefined ) {
             this.course = courseByAlis;
-            //this.router.navigate(['404']);
           } else {
             this.router.navigate(['404']);
           }

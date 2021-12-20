@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { CourseData } from '../data-models/course-data';
 
@@ -11,7 +10,7 @@ export class CourseService {
   private _coursesAddedSub = new Subject<CourseData[]>();
   public coursesAdded = this._coursesAddedSub.asObservable();
 
-  constructor(private router: Router) {
+  constructor() {
     this._courses = [
       {
         id: 1,
@@ -43,11 +42,11 @@ export class CourseService {
     ];
    }
 
-  getCourseList() {
+  getCourseList(): CourseData[] {
     return [...this._courses];
   }
 
-  resetFilter():CourseData[] {
+  resetFilter(): CourseData[] {
     return [...this._courses];
   }
 

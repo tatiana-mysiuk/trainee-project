@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+
 import { AuthData } from '../data-models/auth-data';
 import { UserData } from '../data-models/user-data';
 
@@ -10,9 +10,7 @@ export class AuthService {
   public userInfo: UserData;
   private _isAuthenticated: boolean = false;
 
-  constructor(private router: Router) { }
-
-  public login(authData: AuthData) {
+  public login(authData: AuthData): boolean {
     const token = '1234567890';
     this.userInfo = {
       id: 1,
@@ -22,16 +20,18 @@ export class AuthService {
 
     this._isAuthenticated = true;
     this._saveAuthData(token, this.userInfo.firstName);
-    this.router.navigate(['courses']);
+
     console.log('logged in successfully');
+    return this._isAuthenticated;
   }
 
-  public logout() {
+  public logout(): boolean {
     this._isAuthenticated = false;
-    this.router.navigate(['']);
     const userLogin = this.getUserInfo()
     this._clearAuthData();
     console.log(userLogin);
+
+    return this._isAuthenticated;
   }
 
   public isAuthenticated(): boolean {

@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 import { NotFoundComponent } from './not-found.component';
 
@@ -7,8 +10,17 @@ describe('NotFoundComponent', () => {
   let fixture: ComponentFixture<NotFoundComponent>;
 
   beforeEach(async () => {
+    const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+
     await TestBed.configureTestingModule({
-      declarations: [ NotFoundComponent ]
+      declarations: [ NotFoundComponent ],
+      imports: [
+        MatCardModule,
+        MatIconModule
+      ],
+      providers: [
+        { provide: Router, useValue: routerSpy }
+      ]
     })
     .compileComponents();
   });

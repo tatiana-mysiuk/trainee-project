@@ -36,4 +36,17 @@ describe('CourseDurationComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should convert duration input "100" to "1h 40min" format', () => {
+    const hostElement: HTMLElement = fixture.nativeElement;
+    const durationInput: HTMLInputElement = hostElement.querySelector('input')!;
+    const durationSpan: HTMLElement = hostElement.querySelector('.course-duration')!;
+
+    durationInput.value = '100';
+    durationInput.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    expect(durationSpan.textContent).toBe('1h 40min');
+  });
+
 });

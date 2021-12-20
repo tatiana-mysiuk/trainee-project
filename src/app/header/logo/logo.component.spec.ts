@@ -18,10 +18,20 @@ describe('LogoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LogoComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have as title "Video course"', () => {
+    expect(component.title).toBe('Video course');
+  });
+
+  it('should display title "Video course"', () => {
+    let span: HTMLElement = fixture.nativeElement.querySelector('span');
+    fixture.detectChanges();
+    expect(span.textContent).toContain(component.title);
+  });
+
 });
