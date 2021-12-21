@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { CourseData } from '../../data-models/course-data';
@@ -8,20 +8,26 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
   selector: 'app-single-course',
   templateUrl: './single-course.component.html',
   styleUrls: ['./single-course.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  //changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SingleCourseComponent {
+export class SingleCourseComponent implements OnChanges {
   @Input() courseNumber: number;
   @Input() courseData: CourseData;
+  public creationDate: Date;
+  public alias: string = '';
 
   @Output() courseDeleted = new EventEmitter<number>();
 
   constructor( public dialog: MatDialog ) { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.creationDate = new Date(this.courseData.date);
+  }
+
   openConfirmationDialog(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '25%',
-      data: {courseName: this.courseData.title}
+      data: {courseName: this.courseData.name}
     });
 
     dialogRef.afterClosed().subscribe(result => {

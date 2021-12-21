@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,21 +9,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent {
   public title: string = 'Login';
-  public emailInput: string;
-  public passwordInput: string;
-  public invalidEmail: boolean = false;
-  public invalidPassword: boolean = false;
 
   constructor(private authService: AuthService) { }
 
-  onLogin(): void {
-    this.invalidEmail = this.emailInput === undefined || this.emailInput.length < 0;
-    this.invalidPassword = this.passwordInput === undefined || this.passwordInput.length < 0;
-
-    if ( this.invalidEmail || this.invalidPassword ) return;
+  onLogin(formData: NgForm): void {
+    if ( formData.invalid ) return;
     const loginData = {
-      email: this.emailInput,
-      password: this.passwordInput
+      login: formData.value.login,
+      password: formData.value.password
     }
 
     this.authService.login(loginData);

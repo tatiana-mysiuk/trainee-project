@@ -7,6 +7,6 @@ import { CourseData } from '../data-models/course-data';
 export class FilterPipe implements PipeTransform {
 
   transform(courses: CourseData[], key: string): CourseData[] {
-    return courses.filter( course => course.title.toLowerCase().includes(key.toLowerCase()) );
+    return courses.filter( course => course.name.toLowerCase().includes(key.toLowerCase()) );
   }
 }

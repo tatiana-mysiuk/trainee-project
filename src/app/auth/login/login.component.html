@@ -2,31 +2,35 @@
   <mat-card>
     <h2>{{ title }}</h2>
 
-    <div class="field-lable" [ngClass]="{'error': invalidEmail}"><span><b>Email:</b></span><span>*required</span></div>
-    <mat-form-field appearance="outline">
-      <input matInput
-        type="email"
-        placeholder="Enter email"
-        [(ngModel)]="emailInput"
-        #email="ngModel"
-        required>
-        <mat-error *ngIf="email.invalid">Email is required</mat-error>
-    </mat-form-field>
+    <div class="field-lable"><span><b>Login:</b></span><span>*required</span></div>
+    <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+      <mat-form-field appearance="outline">
+        <input matInput
+          name="login"
+          ngModel
+          type="text"
+          placeholder="Enter login"
+          #login="ngModel"
+          required>
+          <mat-error *ngIf="login.invalid">Email is required</mat-error>
+      </mat-form-field>
 
-    <div class="field-lable" [ngClass]="{'error': invalidPassword}"><span><b>Password:</b></span><span>*required</span></div>
-    <mat-form-field appearance="outline">
-      <input matInput
-        type="password"
-        placeholder="Enter password"
-        [(ngModel)]="passwordInput"
-        #password="ngModel"
-        required>
-        <mat-error *ngIf="password.invalid">Password is required</mat-error>
-    </mat-form-field>
+      <div class="field-lable"><span><b>Password:</b></span><span>*required</span></div>
+      <mat-form-field appearance="outline">
+        <input matInput
+          name="password"
+          ngModel
+          type="password"
+          placeholder="Enter password"
+          #password="ngModel"
+          required>
+          <mat-error *ngIf="password.invalid">Password is required</mat-error>
+      </mat-form-field>
 
-    <div class="action-container">
-      <a mat-flat-button>Forgot password?</a>
-      <button mat-flat-button (click)="onLogin()" class="green-button">Login</button>
-    </div>
+      <div class="action-container">
+        <a mat-flat-button>Forgot password?</a>
+        <button mat-flat-button type="submit" class="green-button">Login</button>
+      </div>
+    </form>
   </mat-card>
 </div>

@@ -10,14 +10,14 @@ import { AuthService } from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   public isAuthenticated: boolean = false;
-  private _urlSubscription: Subscription;
+  private urlSubscription$: Subscription;
 
   constructor(
     private router: Router,
     private authService: AuthService ) { }
 
   ngOnInit():void {
-    this._urlSubscription = this.router.events.pipe(filter( event => event instanceof NavigationEnd )).subscribe(event => {
+    this.urlSubscription$ = this.router.events.pipe(filter( event => event instanceof NavigationEnd )).subscribe(event => {
       this.isAuthenticated = this.authService.isAuthenticated();
     });
   }
@@ -27,6 +27,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._urlSubscription.unsubscribe();
+    this.urlSubscription$.unsubscribe();
   }
 }

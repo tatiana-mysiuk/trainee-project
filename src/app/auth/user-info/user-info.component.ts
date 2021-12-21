@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -6,12 +7,21 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.scss']
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent implements OnInit, OnDestroy {
   public userLogin: string = 'Hello, ';
+  private useInfo$: Subscription;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.userLogin += this.authService.getUserInfo();
+    this.useInfo$ = this.authService.getUserInfo().subscribe(data => {
+      if ( data.name ) {
+        this.userLogin += data.name.first;
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.useInfo$.unsubscribe();
   }
 }

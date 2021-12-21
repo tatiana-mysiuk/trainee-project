@@ -1,27 +1,31 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-course-date-creation',
   templateUrl: './course-date-creation.component.html',
   styleUrls: ['./course-date-creation.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseDateCreationComponent implements OnInit {
+export class CourseDateCreationComponent implements OnChanges {
   public dateToString: string;
-  @Input() creationDate: Date;
-  @Output() creationDateChanged = new EventEmitter<Date>();
+  @Input() creationDate: string;
+  @Output() creationDateChanged = new EventEmitter<string>();
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.dateToString = this._dateToString(this.creationDate);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['creationDate'].firstChange) {
+      this.creationDate = this._dateToString(new Date().toString());
+    } else {
+      this.creationDate = this._dateToString(this.creationDate);
+    }
   }
 
   onChange(creationDate: string): void {
-    this.creationDateChanged.emit(new Date(creationDate));
+    this.creationDateChanged.emit(new Date(creationDate).toString());
   }
 
-  private _dateToString(date: Date): string {
+  private _dateToString(dateString: string): string {
+    let date = new Date(dateString);
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   }
 

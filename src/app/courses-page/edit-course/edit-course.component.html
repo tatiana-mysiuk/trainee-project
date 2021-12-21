@@ -1,12 +1,12 @@
 <mat-card>
-  <h2>{{ course.title }}</h2>
+  <h2>{{ course.name | uppercase }}</h2>
 
   <div class="field-lable"><span><b>Title:</b></span><span>*required</span></div>
   <mat-form-field appearance="outline">
     <input matInput
       type="text"
       placeholder="Enter course name"
-      [(ngModel)]="course.title"
+      [(ngModel)]="course.name"
       required>
   </mat-form-field>
 
@@ -22,16 +22,16 @@
   </mat-form-field>
 
   <app-course-duration
-    [duration]="course.durationMin"
-    (durationChanged)="course.durationMin = $event">
+    [duration]="course.length"
+    (durationChanged)="course.length = $event">
   </app-course-duration>
 
   <app-course-date-creation
-    [creationDate]="course.creationDate"
-    (creationDateChanged)="course.creationDate = $event">
+    [creationDate]="course.date"
+    (creationDateChanged)="course.date = $event">
   </app-course-date-creation>
 
-  <app-authors [authors]="authorsInput"></app-authors>
+  <app-authors [authors]="course.authors.name"></app-authors>
 
   <div class="action-container">
     <button mat-flat-button (click)="onCancel()" class="cancel-button">Cancel</button>

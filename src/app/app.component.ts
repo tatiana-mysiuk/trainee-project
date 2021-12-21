@@ -11,14 +11,14 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnInit, OnDestroy {
   public title: string = 'Videocourses';
   public showBreadcrumbs: boolean = false;
-  private _urlSubscription: Subscription;
+  private urlSubscription$: Subscription;
 
   constructor(
     private router: Router,
     private authService: AuthService ) { }
 
   ngOnInit(): void {
-    this._urlSubscription = this.router.events.pipe(filter( event => event instanceof NavigationEnd )).subscribe(event => {
+    this.urlSubscription$ = this.router.events.pipe(filter( event => event instanceof NavigationEnd )).subscribe(event => {
       this.showBreadcrumbs = (this.router.url != '/login') && (this.router.url != '/') && (this.router.url != '/404');
 
       if ( this.authService.isAuthenticated() ) {
@@ -33,6 +33,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._urlSubscription.unsubscribe();
+    this.urlSubscription$.unsubscribe();
   }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +17,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouteReuseStrategy } from '@angular/router';
 import { RouteReuseService } from './services/route-reuse.service';
+import { TokenInterceptor } from './services/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { RouteReuseService } from './services/route-reuse.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
@@ -38,7 +41,8 @@ import { RouteReuseService } from './services/route-reuse.service';
   ],
   providers: [
     FilterPipe,
-    {provide: RouteReuseStrategy, useClass: RouteReuseService}
+    {provide: RouteReuseStrategy, useClass: RouteReuseService},
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

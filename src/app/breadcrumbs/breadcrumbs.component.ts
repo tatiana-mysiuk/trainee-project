@@ -14,14 +14,14 @@ export interface Breadcrumb{
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
   public breadcrumbs: Breadcrumb[];
-  private _urlSubscription: Subscription;
+  private urlSubscription$: Subscription;
 
   constructor( private router: Router ) { }
 
   ngOnInit(): void {
     this.breadcrumbs = this._createBreadcrumbs(this.router.routerState.snapshot.url);
 
-    this._urlSubscription = this.router.events.pipe(filter( event => event instanceof NavigationEnd) ).subscribe(event => {
+    this.urlSubscription$ = this.router.events.pipe(filter( event => event instanceof NavigationEnd) ).subscribe(event => {
       this.breadcrumbs = this._createBreadcrumbs(this.router.routerState.snapshot.url);
     });
   }
@@ -43,6 +43,6 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._urlSubscription.unsubscribe();
+    this.urlSubscription$.unsubscribe();
   }
 }

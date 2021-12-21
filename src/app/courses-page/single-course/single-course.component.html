@@ -1,16 +1,16 @@
-<mat-card [appSetBorder]="courseData.creationDate">
+<mat-card [appSetBorder]="creationDate">
   <div class="preheader" >
-    <span><mat-icon aria-hidden="false" aria-label="Creation date">access_time</mat-icon>{{ courseData.durationMin | duration }}</span>
-    <span><mat-icon aria-hidden="false" aria-label="Duration">calendar_today</mat-icon>{{ courseData.creationDate | date:'dd/MM/yyyy' }}</span>
+    <span><mat-icon aria-hidden="false" aria-label="Creation date">access_time</mat-icon>{{ courseData.length | duration }}</span>
+    <span><mat-icon aria-hidden="false" aria-label="Duration">calendar_today</mat-icon>{{ creationDate | date:'dd/MM/yyyy' }}</span>
   </div>
 
-  <h2 [ngClass]="{'top-rated':courseData.topRated}">Video course {{ courseNumber + 1 }} {{ courseData.title | uppercase }}</h2>
+  <h2 [ngClass]="{'top-rated':courseData.isTopRated}">Video course {{ courseNumber + 1 }} {{ courseData.name | uppercase }}</h2>
 
   <div class="course-description">
     <p>{{ courseData.description }}</p>
 
     <div class="toolbar">
-      <a [routerLink]="['/courses/', courseData.alias]"  mat-flat-button color="primary">
+      <a [routerLink]="['/courses/', courseData.id]"  mat-flat-button color="primary">
         <mat-icon aria-hidden="false" aria-label="Edit">edit</mat-icon>
         <span>Edit</span>
       </a>

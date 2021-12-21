@@ -30,7 +30,7 @@ const routes: Routes = [
         data: {keyPath: 'notfound'}
       },*/
       {
-        path: ':alias',
+        path: ':id',
         component: EditCourseComponent,
         canActivate: [AuthGuard],
         data: {keyPath: 'edit'}
