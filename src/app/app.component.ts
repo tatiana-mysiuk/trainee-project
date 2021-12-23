@@ -21,7 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.urlSubscription$ = this.router.events.pipe(filter( event => event instanceof NavigationEnd )).subscribe(event => {
       this.showBreadcrumbs = (this.router.url != '/login') && (this.router.url != '/') && (this.router.url != '/404');
 
-      if ( this.authService.isAuthenticated() ) {
+      if ( !!this.authService.isAuthenticated() ) {
         if ( this.router.routerState.snapshot.url === '/login' ) {
           this.router.navigate(['courses']);
 

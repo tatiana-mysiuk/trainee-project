@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+
 import { AuthData } from '../data-models/auth-data';
 import { UserData } from '../data-models/user-data';
 
@@ -10,7 +11,7 @@ import { UserData } from '../data-models/user-data';
 })
 export class AuthService {
   public userInfo: UserData;
-  private _isAuthenticated: boolean = false;
+  private _isAuthenticated = new BehaviorSubject<boolean>(false);
 
   constructor(
     private http: HttpClient,
@@ -21,7 +22,7 @@ export class AuthService {
       .subscribe(response => {
         const token = response.token;
         if (token) {
-          this._isAuthenticated = true;
+          this._isAuthenticated.next(true);
           this._saveAuthData(token);
           this.router.navigate(['courses']);
         }
@@ -29,16 +30,16 @@ export class AuthService {
   }
 
   public logout() {
-    this._isAuthenticated = false;
+    this._isAuthenticated.next(false);
     this._clearAuthData();
     this.router.navigate(['']);
   }
 
-  public isAuthenticated(): boolean {
+  public isAuthenticated(): Observable<boolean> {
     if ( localStorage.getItem('token') !== null ) {
-      this._isAuthenticated = true;
+      this._isAuthenticated.next(true);
     }
-    return this._isAuthenticated;
+    return this._isAuthenticated.asObservable();
   }
 
   public getUserInfo(): Observable<UserData> {

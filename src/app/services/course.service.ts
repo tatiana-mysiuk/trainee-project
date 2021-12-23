@@ -28,7 +28,6 @@ export class CourseService {
         .set('sort', 'date')
 
     }).subscribe(data => {
-      console.log(data)
       if (this._courses == undefined) {
         this._courses = data;
       } else {
@@ -85,8 +84,10 @@ export class CourseService {
     this._loadingSub.next(true);
     this.http.get<CourseData[]>('/courses')
     .subscribe(data => {
-      this._courses = data;
-      course.id = this._createId();
+      course.id = this._createId(data);
+      if (this._courses == undefined) {
+        this._courses = data;
+      }
       this._courses.push(course);
       this._coursesAddedSub.next({courses: [...this._courses], message: 'successfully saved'});
       this._loadingSub.next(false);
@@ -98,7 +99,9 @@ export class CourseService {
     const updatedCourse = course;
     this.http.get<CourseData[]>('/courses')
     .subscribe(data => {
-      this._courses = data;
+      if (this._courses == undefined) {
+        this._courses = data;
+      }
       this._courses = this._courses.filter( course => course.id != updatedCourse.id );
       this._courses.push(updatedCourse);
       this._coursesAddedSub.next({courses: [...this._courses], message: 'successfully updated'});
@@ -110,15 +113,15 @@ export class CourseService {
     this._loadingSub.next(true);
     this.http.get<CourseData[]>('/courses')
     .subscribe(data => {
-      this._courses = data;
+      //this._courses = data;
       this._courses = this._courses.filter( course => course.id != courseId );
       this._coursesAddedSub.next({courses: [...this._courses], message: 'successfully updated'});
       this._loadingSub.next(false);
     });
   }
 
-  private _createId(): number {
-    let id = this._courses.reduce( (previous, current) => {
+  private _createId(allCourses: CourseData[]): number {
+    let id = allCourses.reduce( (previous, current) => {
       if (previous.id !== null && current.id !== null && previous.id > current.id) {
         return previous;
       }

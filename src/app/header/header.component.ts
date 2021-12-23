@@ -18,7 +18,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit():void {
     this.urlSubscription$ = this.router.events.pipe(filter( event => event instanceof NavigationEnd )).subscribe(event => {
-      this.isAuthenticated = this.authService.isAuthenticated();
+      this.authService.isAuthenticated().subscribe((value: boolean) => {
+        this.isAuthenticated = value
+      })
     });
   }
 
