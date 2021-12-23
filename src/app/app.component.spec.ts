@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
@@ -13,10 +14,9 @@ describe('AppComponent', () => {
   let component: AppComponent;
 
   beforeEach(async () => {
-
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule.withRoutes([])
       ],
       declarations: [
         AppComponent,
@@ -25,7 +25,9 @@ describe('AppComponent', () => {
         BreadcrumbsComponent
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      providers: [ AuthService ]
+      providers: [
+        AuthService
+      ]
     }).compileComponents();
   });
 
@@ -34,6 +36,7 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
     const authService = TestBed.inject(AuthService);
     spyOn(authService, 'isAuthenticated').and.returnValue(true);
+
     fixture.detectChanges();
   });
 

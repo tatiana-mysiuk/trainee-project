@@ -26,6 +26,7 @@ describe('CourseDateCreationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseDateCreationComponent);
     component = fixture.componentInstance;
+    component.creationDate = new Date();
     fixture.detectChanges();
   });
 

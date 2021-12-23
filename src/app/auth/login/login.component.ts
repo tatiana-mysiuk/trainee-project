@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,7 +14,9 @@ export class LoginComponent {
   public invalidEmail: boolean = false;
   public invalidPassword: boolean = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router) { }
 
   onLogin(): void {
     this.invalidEmail = this.emailInput === undefined || this.emailInput.length < 0;
@@ -25,7 +28,9 @@ export class LoginComponent {
       password: this.passwordInput
     }
 
-    this.authService.login(loginData);
+    if ( this.authService.login(loginData) ) {
+      this.router.navigate(['courses']);
+    }
   }
 
 }

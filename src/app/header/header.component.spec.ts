@@ -4,13 +4,19 @@ import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 
 import { HeaderComponent } from './header.component';
+import { AuthService } from '../services/auth.service';
+import { Subject } from 'rxjs';
+
+const mockRouter = {
+  navigate: jasmine.createSpyObj('Router', ['navigate']),
+  events: new Subject<any>()
+}
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async () => {
-    const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
     await TestBed.configureTestingModule({
       imports: [
         MatIconModule
@@ -18,7 +24,8 @@ describe('HeaderComponent', () => {
       declarations: [ HeaderComponent ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       providers: [
-        { provide: Router, useValue: routerSpy }
+        { provide: Router, useValue: mockRouter },
+        AuthService
       ]
     })
     .compileComponents();
@@ -27,6 +34,10 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+    const authService = TestBed.inject(AuthService);
+    spyOn(authService, 'isAuthenticated').and.returnValue(true);
+    spyOn(authService, 'logout').and.returnValue(false);
+
     fixture.detectChanges();
   });
 

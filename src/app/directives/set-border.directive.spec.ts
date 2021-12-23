@@ -12,9 +12,9 @@ import { SetBorderDirective } from './set-border.directive';
 })
 class TestComponent {
   currentDate: number = Date.now();
-  freshDate: Date = new Date(this.currentDate + 14 * 24 * 60 * 60 * 1000);
-  futureDate: Date = new Date(this.currentDate - 14 * 24 * 60 * 60 * 1000);
-  testDate: Date = new Date(this.currentDate + 20  * 24 * 60 * 60 * 1000);
+  freshDate: Date = new Date(this.currentDate - 13 * 24 * 60 * 60 * 1000);
+  futureDate: Date = new Date(this.currentDate + 14 * 24 * 60 * 60 * 1000);
+  testDate: Date = new Date(this.currentDate - 20  * 24 * 60 * 60 * 1000);
 }
 
 describe('SetBorderDirective', () => {

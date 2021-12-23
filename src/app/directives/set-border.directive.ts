@@ -19,7 +19,7 @@ export class SetBorderDirective implements OnChanges {
     let creationDate: number = this.creationDate.getTime();
     let isFresh: boolean = this.isFreshCourse(14, currentDate, creationDate);
 
-    if ( creationDate < currentDate && isFresh ) {
+    if ( creationDate <= currentDate && isFresh ) {
       this.borderColor = this.freshCourseColor;
     }  else if ( creationDate > currentDate) {
       this.borderColor = this.upcomingCourseColor;
