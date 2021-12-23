@@ -65,7 +65,12 @@ export class CourseListComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.courses = this._filterPipe.transform(this.courses, searchRequest);
     }*/
-    this._courseService.getFilteredList(searchRequest);
+    if (searchRequest == '') {
+      this.isAllUploaded = false;
+      this.courses = this._courseService.resetFilter();
+    } else {
+      this._courseService.getFilteredList(searchRequest);
+    }
   }
 
   onCourseDeleted(courseId: number) {

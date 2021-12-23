@@ -31,6 +31,7 @@ export class SearchComponent implements AfterViewInit, OnDestroy {
   }
 
   onReset() {
+    this.searchInput.nativeElement.value = '';
     this.courseFilter.emit('');
   }
 
