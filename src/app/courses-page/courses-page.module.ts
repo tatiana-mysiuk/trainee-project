@@ -18,6 +18,7 @@ import { CourseDateCreationComponent } from './edit-course/course-date-creation/
 import { CourseDurationComponent } from './edit-course/course-duration/course-duration.component';
 import { AuthorsComponent } from './edit-course/authors/authors.component';
 import { ConfirmationDialogComponent } from './single-course/confirmation-dialog/confirmation-dialog.component';
+import { LoadingBlockComponent } from '../loading-block/loading-block.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ConfirmationDialogComponent } from './single-course/confirmation-dialog
     CourseDateCreationComponent,
     CourseDurationComponent,
     AuthorsComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    LoadingBlockComponent
   ],
   imports: [
     CommonModule,

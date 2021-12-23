@@ -15,7 +15,10 @@
     [courseData]="course"
     (courseDeleted)="onCourseDeleted($event)">
   </app-single-course>
-  <app-pagination></app-pagination>
+
+  <mat-card class="load-more" >
+    <a mat-flat-button (click)="onLoadMore()">Load more</a>
+  </mat-card>
 </ng-template>
 
 <ng-template #noDataBlock>
