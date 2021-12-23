@@ -16,7 +16,7 @@
     (courseDeleted)="onCourseDeleted($event)">
   </app-single-course>
 
-  <mat-card class="load-more" >
+  <mat-card class="load-more" *ngIf="!isAllUploaded">
     <a mat-flat-button (click)="onLoadMore()">Load more</a>
   </mat-card>
 </ng-template>

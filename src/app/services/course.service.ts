@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 //import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { CourseData } from '../data-models/course-data';
 
 @Injectable({
@@ -13,37 +13,48 @@ export class CourseService {
   public coursesAdded = this._coursesAddedSub.asObservable();
   private _courseSub = new Subject<{course: CourseData, message: string}>();
   public course = this._courseSub.asObservable();
-  private _loadingSub = new Subject<boolean>();
+  private _loadingSub = new BehaviorSubject<boolean>(true);
   public isLoading$ = this._loadingSub.asObservable();
 
   constructor( private http: HttpClient ) { }
 
   getCourseList(pageSize: number, startFrom: number): void {
-    const queryParams = `?start=${startFrom}&count=${pageSize}&sort=date`;
+    let message: string = '';
     this._loadingSub.next(true);
-    this.http.get<CourseData[]>('/courses' + queryParams)
-      .subscribe(data => {
-        if (this._courses == undefined) {
-          this._courses = data;
-        } else {
-          this._courses = [...this._courses, ...data];
-        }
+    this.http.get<CourseData[]>('/courses', {
+      params: new HttpParams()
+        .set('start', startFrom.toString())
+        .set('count', pageSize.toString())
+        .set('sort', 'date')
 
-        this._coursesAddedSub.next({courses: [...this._courses], message: ''});
-        setTimeout(() => { //just to see - spinner is working
-          this._loadingSub.next(false);
-        }, 1000);
-      });
+    }).subscribe(data => {
+      console.log(data)
+      if (this._courses == undefined) {
+        this._courses = data;
+      } else {
+        this._courses = [...this._courses, ...data];
+      }
+      if (data.length == 0) {
+        message = 'uploaded';
+      }
+
+      this._coursesAddedSub.next({courses: [...this._courses], message: message});
+      setTimeout(() => { //just to see - spinner is working
+        this._loadingSub.next(false);
+      }, 1000);
+    });
   }
 
   getFilteredList(searchRequest: string): void {
-    const queryParams = `?textFragment=${searchRequest}&sort=date`;
     this._loadingSub.next(true);
-    this.http.get<CourseData[]>('/courses' + queryParams)
-      .subscribe(data => {
-        this._coursesAddedSub.next({courses: [...data], message: 'search'});
-        this._loadingSub.next(false);
-      });
+    this.http.get<CourseData[]>('/courses', {
+      params: new HttpParams()
+        .set('textFragment', searchRequest)
+        .set('sort', 'date')
+    }).subscribe(data => {
+      this._coursesAddedSub.next({courses: [...data], message: 'search'});
+      this._loadingSub.next(false);
+    });
   }
 
   resetFilter():CourseData[] {

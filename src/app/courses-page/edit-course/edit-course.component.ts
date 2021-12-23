@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,7 +12,7 @@ import { CourseData } from 'src/app/data-models/course-data';
   styleUrls: ['./edit-course.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EditCourseComponent implements OnInit, OnDestroy {
+export class EditCourseComponent implements OnInit, AfterViewInit, OnDestroy {
   public authorsInput: string = '';
   public course: CourseData = {
     id: null,
@@ -56,6 +56,10 @@ export class EditCourseComponent implements OnInit, OnDestroy {
         }
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    console.log('after')
   }
 
   onCancel(): void {

@@ -1,12 +1,9 @@
 <div class="search-input">
   <mat-form-field appearance="outline">
     <mat-label>Type to search</mat-label>
-    <input matInput
-      [(ngModel)]="searchRequest"
-      (change)="onSearchRequestCnange()">
-      <!--(ngModelChange)="onSearchRequestCnange()"-->
+      <input matInput #searchInput >
     <mat-icon matPrefix>search</mat-icon>
   </mat-form-field>
 
-  <button mat-flat-button (click)="onSearch()" class="green-button">Search</button>
+  <button mat-flat-button (click)="onReset()" class="green-button">Reset</button>
 </div>

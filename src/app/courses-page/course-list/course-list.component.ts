@@ -19,6 +19,7 @@ export class CourseListComponent implements OnInit, AfterViewInit, OnDestroy {
   public noDataMessage: string = 'No data. Feel free to add new course';
   public pageSize: number = 5;
   public startFrom: number = 0;
+  public isAllUploaded: boolean = false;
   private courseAddSubscription$ : Subscription;
 
   constructor(
@@ -39,7 +40,11 @@ export class CourseListComponent implements OnInit, AfterViewInit, OnDestroy {
           break;
         case 'search':
           this.noDataMessage = 'Nothing found. Try another request';
+          this.isAllUploaded = true;
           break;
+        case 'uploaded':
+            this.isAllUploaded = true;
+            break;
         default:
           this.snackBar.open(data.message, '', {duration: 1000});
       }
